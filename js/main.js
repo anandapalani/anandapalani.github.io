@@ -18,6 +18,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     .when("/success", {templateUrl: "/pages/success.html", controller: "SuccessCtrl"})
     .when("/failure", {templateUrl: "pages/failure.html", controller: "FailureCtrl"})
     .when("/homepage", {templateUrl: "pages/homepage.html", controller: "HomePageCtrl"})
+    .when("/resume", {templateUrl: "pages/resume.html", controller: "resumeCtrl"})
     .otherwise("/404", {templateUrl: "pages/404.html", controller: "PageCtrl"});
     
 }]);
@@ -25,9 +26,8 @@ app.config(['$routeProvider', function ($routeProvider) {
 /**
  * Controls the Blog
  */
-app.controller('BlogCtrl', function (/* $scope, $location, $http */) {
-  console.log("Blog Controller reporting for duty.");
-});
+app.controller('resumeCtrl', function (/* $scope, $location, $http */) {
+  });
 
 /**
  * Controls for Failure Page
@@ -43,23 +43,6 @@ app.controller('HomePageCtrl', function (/* $scope, $location, $http */) {
   console.log("HomePage  Controller reporting for duty.");
 });
 
-/**
- * Controls all other Pages
- */
-app.controller('PageCtrl', function (/* $scope, $location, $http */) {
-  console.log("Page Controller reporting for duty.");
-  
-
-  // Activates the Carousel
-  $('.carousel').carousel({
-    interval: 5000
-  });
-
-  // Activates Tooltips for Social Links
-  $('.tooltip-social').tooltip({
-    selector: "a[data-toggle=tooltip]"
-  })
-});
 
 /**
  * Controls the Success
@@ -107,80 +90,8 @@ $scope.loading=true;
     $scope.payment_page=true;  }, 2000);
 
         $scope.donation_details=false;
-        //$scope.iframeUrl=TestDataResource.query(); 
-        //$scope.url = $sce.trustAsResourceUrl($scope.iframeUrl);
-
-               
-          //          alert($scope.iframeUrl);
-            //        console.log($scope.iframeUrl);
-        // Posting data to php file
-       // alert($scope.user);
-       /*        
-        $http({
-          method  : 'GET',
-          //url     : 'https://mydonatetest.bt.com/api/v2/donation',
-          url     :  'http://mydonatetest.bt.com/api/v2/statistics/totals',
-          data    : $.param($scope.user), //forms user object
-         headers: {'Content-Type': 'application/x-www-form-urlencoded',
-                   'Authorization': 'Bearer ' + 'f9aec70b-090b-4477-b069-606293a864cc',
-                   'Access-Control-Allow-Origin': '*',
-                   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-		               'x-api-key': '1ee6c5abaebd9143d605d9c624310af5' }
-         })
-          .success(function(data) {
-            console.log("alert1");
-              console.log(data);
-            if (data.errors) {
-              console.log("alert2");
-                console.log(data);
-            } else {
-              console.log("alert3");
-            console.log(data);
-            }
-          });
-
-          */
         };
     });
-
-
-app.factory('TestDataResource', function($http) {
-
-    return {
-        query: function() {            
-            return 'https://mydonatetest.bt.com/donation/iframe?donationId=51087&redirectUrl=http://localhost:8000/#/success'
-        }
-    }
-});
- 
-    app.controller('testController', function($scope, $http) {
-        
-        alert("hello");
-        $scope.submit = function() {
-        
-        $http({
-          method  : 'GET',
-          url     :  'http://mydonatetest.bt.com/api/v2/statistics/totals',
-          data    : $.param($scope.user), //forms user object
-         headers: {'Content-Type': 'application/x-www-form-urlencoded',
-                   'Authorization': 'Bearer ' + 'f9aec70b-090b-4477-b069-606293a864cc',
-                   'Access-Control-Allow-Origin': '*',
-                   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-		               'x-api-key': '1ee6c5abaebd9143d605d9c624310af5' }
-         })
-          .success(function(data) {
-            
-            if (data.errors) {
-              console.log("alert2");
-                console.log(data);
-            } else {
-              console.log("alert3");
-            console.log(data);
-            }
-          });  
-        };
-    });
-
 
 
 
