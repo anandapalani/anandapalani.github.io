@@ -1,0 +1,277 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<body ng-controller="postController">
+<div class="container" ng-show="donation_details">
+<div class="col-sm-8 col-sm-offset-2">
+  <div class="page-header text-center">
+    <h1><span class="glyphicon glyphicon-share"></span> Make a Donation</h1>
+  </div> 
+                            
+    <!-- FORM -->
+
+ <form name="userForm" id="donate-page" ng-submit="submitForm();" novalidate>
+<!--
+ <input id="targetType" name="targetType"  ng-model="user.targetType" type="hidden" value="PARTICIPANT"/>
+    <input id="targetID" name="targetID" ng-model="user.targetID" type="hidden" value="425372"/>
+    <input id="targetURL" name="targetURL" ng-model="user.targetURL" type="hidden" value="/fundraisers/abdulrahman251"/>
+    <input id="targetTitle" name="targetTitle" ng-model="user.targetTitle" type="hidden" value="RCF Syria Appeal"/>
+    <input id="donorPreferredName" ng-model="user.donorPreferredName" name="donorPreferredName" type="hidden" value="anon"/>
+-->
+ <div class="panel panel-info">
+                <div class="panel-heading text-center">
+                    <strong>Your donation</strong>
+                </div>
+                <div class="panel-body">
+                     <label>I would like to make a donation for the amount of <abbr title="Required field" class="text-danger">* </label>
+                    <div class="form-check">                        
+      <label class="radio-inline">
+        <input type="radio" class="form-check-input" name="donationAmount"  ng-model="user.donationAmount" value="10" checked>
+<label> £ 10 </label>
+      </label>
+      <label class="radio-inline">
+        <input type="radio" class="form-check-input" name="donationAmount"  ng-model="user.donationAmount" value="20" >
+        <label> £ 20 </label>
+      </label>
+      <label class="radio-inline">
+        <input type="radio" class="form-check-input" name="donationAmount"  ng-model="user.donationAmount" value="30" >
+       <label> £ 30 </label>
+      </label>
+      <label class="radio-inline">
+        <input type="radio" class="form-check-input" name="donationAmount"  ng-model="user.donationAmount" value="40" >
+      <label> £ 40 </label>
+      </label>
+      <label class="radio-inline">
+        <input type="radio" class="form-check-input" name="donationAmount"  ng-model="user.donationAmount" value="50" >
+        <label> £ 50 </label></label>
+        &nbsp; <label> &nbsp; Other &nbsp; £ </label>
+     
+<label class="radio-inline">
+        <input type="text" class="form-control display-inline-block" value="0" maxlength="8" name="donationAmount"  ng-model="user.donationAmount" value="0.0" checked>
+</label>
+
+<br></br>
+	  <div class="form-group">
+        <label>Email<abbr title="Required field" class="text-danger">* </abbr></label>
+        <input type="email" name="donorEmail" class="form-control" ng-model="user.donorEmail">
+        <span ng-show="errorEmail">{{errorEmail}}</span>
+    </div>
+ </div>
+</div>
+</div>
+
+ <div class="panel panel-info">
+                <div class="panel-heading text-center">
+                    <strong>Gift Aid It</strong>
+                </div>
+                <div class="panel-body">
+
+<div class="form-group">
+        <label>Please read through the following statements and select the appropriate answers</label>
+</div>
+
+This donation is my own money. It has not come from anyone else e.g. a business, friends, family or a collection.
+<div class="form-check">									
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="giftAidDonationIsOwnMoney"  ng-model="user.giftAidDonationIsOwnMoney"value="true" checked>
+       Yes</label>
+          <label>
+	  <input type="radio" class="form-check-input" name="giftAidDonationIsOwnMoney"  ng-model="user.giftAidDonationIsOwnMoney" value="false" >
+        No</label>
+</div>
+
+
+This is the proceeds from the sale of goods or provision of service e.g. a cake sale, auction or car wash.
+<div class="form-check">									
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="giftAidProceedsFromSale"  ng-model="user.giftAidProceedsFromSale" value="true" checked>
+       Yes</label>
+           <label>
+	  <input type="radio" class="form-check-input" name="giftAidProceedsFromSale"  ng-model="user.giftAidProceedsFromSale" value="false" >
+        No</label>
+</div>
+
+I am receiving a benefit from this donation e.g. entry to an event, raffle or sweepstake.
+<div class="form-check">									
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="giftAidBenefitFromDonation"  ng-model="user.giftAidBenefitFromDonation" value="true" checked>
+       Yes</label>
+          <label>
+	  <input type="radio" class="form-check-input" name="giftAidBenefitFromDonation"  ng-model="user.giftAidBenefitFromDonation" value="false" >
+        No</label>
+</div>
+
+<br>
+This donation is not eligible for Gift Aid.
+<p><strong>I am a UK taxpayer and understand that if I pay less Income Tax and/or Capital Gains Tax in the current tax year
+                                    than the amount of Gift Aid claimed on all my donations it is my responsibility to pay any difference.</strong></p>
+
+<div class="form-check">									
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" name="giftAidConfirmed"  ng-model="user.giftAidConfirmed" value="true" checked>
+       I want to Gift Aid this donation to Lambourn RDA  </label>
+      </label>     
+</div>
+</div>
+ <div class="panel panel-info">
+                <div class="panel-heading text-center">
+                    <strong>Personalise your donation</strong>
+<small>(optional)</small>
+                </div>
+
+                <div class="panel-body">
+
+
+    <h3 class="margin-top-0">
+                    
+<div class="form-group row">
+<label for="msgToTarget" class="col-sm-4 control-label"><h4>Personalised message</h4> 
+                           <small class="text-normal"> (Max 250 characters)</small>
+           </label>
+        <div class="col-xs-10 col-sm-8">
+             <textarea id="msgToTarget" name="msgToTarget" ng-model="user.msgToTarget" maxlength="250" class="form-control" rows="5"></textarea>
+                  </div>
+      </div>   
+
+
+    </div>
+    </div>
+ <div class="panel panel-info">
+                <div class="panel-heading text-center">
+                    <strong>Person Details</strong>
+                </div>
+                <div class="panel-body">
+
+
+<!--
+<h3 class="margin-top-0">
+Person making the payment details</h3>
+-->
+
+Please enter below the name and address details of the person making the payment 
+(If choosing to Gift Aid this must be a residential address)
+
+
+ <div class="form-group">
+         <label>Title<abbr title="Required field" class="text-danger">* </abbr></label>
+        <select  name="cardholdersTitleDesc" class="form-control" ng-model="user.cardholdersTitleDesc">
+         <option value="Mr" selected="selected">Mr</option><option value="Mrs">Mrs</option>
+         </select>
+    </div>
+
+   <div class="form-group">
+         <label>First name <abbr title="Required field" class="text-danger">* </abbr></label>
+        <input type="text" name="cardholdersFirstName" class="form-control" ng-model="user.cardholdersFirstName">
+        <span ng-show="errorName">{{errorName}}</span>
+    </div>
+
+    <div class="form-group">
+         <label>Last name <abbr title="Required field" class="text-danger">* </abbr></label>
+        <input type="text" name="cardholdersLastName" class="form-control" ng-model="user.cardholdersLastName">
+        <span ng-show="errorName">{{errorName}}</span>
+    </div>
+
+   <div class="form-group">
+         <label>Postcode <abbr title="Required field" class="text-danger">* </abbr></label>
+        <input type="text" name="postcode" class="form-control" ng-model="user.postcode">
+        <span ng-show="errorName">{{errorName}}</span>
+    </div>
+
+     <div class="form-group">
+         <label>Building name/No.<abbr title="Required field" class="text-danger">* </abbr></label>
+        <input type="text" name="buildingNumber" class="form-control" ng-model="user.buildingNumber">
+        <span ng-show="errorName">{{errorName}}</span>
+    </div>
+
+      <div class="form-group">
+         <label>Street name</label>
+        <input type="text" name="street" class="form-control" ng-model="user.street">
+        <span ng-show="errorName">{{errorName}}</span>
+    </div>
+    
+    <div class="form-group">
+         <label>Town or city<abbr title="Required field" class="text-danger">* </abbr></label>
+        <input type="text" name="town" class="form-control" ng-model="user.town">
+        <span ng-show="errorName">{{errorName}}</span>
+    </div>
+   
+   <div class="form-group">
+         <label>County</label>
+        <input type="text" name="county" class="form-control" ng-model="user.county">
+        <span ng-show="errorName">{{errorName}}</span>
+    </div>
+
+    <div class="form-group">
+         <label>Country<abbr title="Required field" class="text-danger">* </abbr></label>
+        <select  name="country" class="form-control" ng-model="user.country">
+         <option value="UNITED KINGDOM" selected="selected">UNITED KINGDOM</option><option value="INDIA">INDIA</option>
+         </select>
+    </div>
+     
+     </div>    
+</div>
+
+<!--
+<div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    <strong>Receive future information</strong>
+                </div>
+                <div class="panel-body">
+
+Your charity may contact you about your fundraising or donations, but please tick if you are happy for us to send them your details so that they can send you news about the charity and general marketing messages. Your information will be dealt with according to the privacy policy of your chosen charity.
+
+<div class="form-check">									
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" name="allowCharitiesToContactUser"  ng-model="user.allowCharitiesToContactUser" value="true" checked>
+       I am happy to be contacted by the charities I donate to and fundraise for (email/post/text/phone) </label>
+      </label>     
+</div> 
+    </div>
+    </div>
+ -->
+
+
+
+<button type="submit" class="btn btn-success btn-lg btn-block"> <span class="glyphicon glyphicon-flash"></span>Proceed to Payment</button>
+    </form>
+
+<!--
+    <div>
+  <pre>
+    {{ user }}
+</pre>
+  </div>
+  -->
+</div>
+</div>
+
+
+</div>
+
+
+<div class="container" ng-show="loading" align="center" >
+<div class="text-xs-center" id="example-caption-5">Payment page is loading ... </div>
+<img height="150" width="150" alt="Hover image" id="img_PSR_6"	src="/templates/images/infinity.gif" />
+</div>
+
+
+
+
+<div class="container" ng-show="payment_page" >
+	<div class="page-header text-center">
+    <h2><span class="glyphicon glyphicon-credit-card"></span>    Make a Donate</h2>
+</div> 
+<div id="form-check" >
+<iframe id="childId" align = "left" width="1200" height="500" ng-src="https://mydonatetest.bt.com/donation/iframe?donationId=51087&redirectUrl=http://localhost:8000/#/success"></iframe>
+</div>
+</div>
+
+
+
+<script>
+$(document).ready(function() {
+	    
+});
+
+</script>
+
+
+</body>
